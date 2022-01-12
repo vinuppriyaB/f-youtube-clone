@@ -1,0 +1,21 @@
+.searchvideo{
+    flex:.850;
+    padding: 20px 300px;
+
+}
+.searchvideo_filter{
+    display: flex;
+    align-items: center;
+    color: gray;
+    font-size: xx-small !important;
+
+    
+}
+.searchvideo_filter>h2{
+    font-size: 14px;
+    margin-left: 10px;
+}
+.searchvideo>hr{
+    color:gray;
+    margin: 10px 0px;
+}

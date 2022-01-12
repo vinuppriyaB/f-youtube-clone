@@ -1,0 +1,10 @@
+.RecommendedVideo{
+    flex:.850;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    padding:20px 50px;
+    row-gap: 25px;
+    background-color: rgb(31, 29, 30);
+
+}

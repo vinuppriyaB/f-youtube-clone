@@ -1,0 +1,31 @@
+.videoRow{
+    display: flex;
+    margin-bottom: 20px;
+}
+.videoRow_text{
+    display: flex;
+    flex-direction: column;
+    margin-left:30px;
+    margin-top: 10px;
+}
+.videorow_image{
+    height:200px;
+    width:330px;
+}
+.videoRow_channel{
+    display: flex;
+    align-items: center;
+    margin:15px 0px;
+}
+.videoRow_Avatar{
+    font-size: xx-small !important;
+    margin-right: 10px;
+
+}
+.videoRow_text>h4{
+    margin-bottom: 5px;
+}
+.videoRow_text>p{
+    font-size: small;
+    color:gray
+}
