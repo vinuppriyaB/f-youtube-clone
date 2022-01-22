@@ -1,8 +1,37 @@
+.search_channel{
+    /* background-color: rgb(243, 172, 172); */
+    margin-left: 200px;
+    min-width:420px;
+    /* width: 100vw; */
+}
 .searchvideo{
-    flex:.850;
-    padding: 20px 300px;
+    /* flex:.600; */
+    /* padding: 20px 200px; */
+    /* align-content: center; */
+    padding:20px;
+    width: 70%;
+    margin: 0px auto;
+    /* background-color: teal; */
 
 }
+@media screen and (max-width: 1313px) {
+    .search_channel{
+        /* background-color: rgb(243, 172, 172); */
+        margin-left: 85px;
+        width:100%;
+    }
+    .searchvideo{
+        /* flex:.600; */
+        /* padding: 20px 200px; */
+        /* align-content: center; */
+        padding:20px;
+        width: 90%;
+        /* margin: 0px auto; */
+        /* background-color: teal; */
+    
+    }
+}
+
 .searchvideo_filter{
     display: flex;
     align-items: center;

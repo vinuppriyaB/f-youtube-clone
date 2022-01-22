@@ -1,0 +1,42 @@
+.Login_field{
+    display: flex;
+    flex-direction: column;
+   
+    gap:30px;
+    height: auto;
+    width:20%;
+    border:1px solid gray;
+    margin:100px auto;
+    padding: 50px 40px 70px 40px;
+    border-radius: 5px;
+    
+}
+
+.google>p{
+    font-size: 30px;
+}
+.login_singin_text{
+    font-size: 30px;
+}
+.login_textfield{
+    width: 95%;
+    font-size: 17px;
+    padding: 10px 10px;
+    
+}
+.Login_top{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+align-items: center;
+
+}
+.Login_bottom{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+ .login_btn {
+    text-transform:none !important;  
+ }  

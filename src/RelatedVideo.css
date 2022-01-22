@@ -1,0 +1,48 @@
+.RelatedVideo{
+    /* flex:.25; */
+    
+margin-left: 25px;
+margin-right: 75px;
+display: flex;
+flex-direction: column;
+
+}
+
+
+
+.RelatedVideoRow{
+    display: flex;
+    margin-bottom: 10px;
+    
+}
+.RelatedVideoRow_text{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    gap:3px;
+
+}
+.RelatedVideoRow_image{
+    height:110px;
+    width:160px;
+
+}
+
+
+.RelatedVideoRow_text>h4{
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.RelatedVideoRow_text>p{
+    font-size: small;
+    color:gray
+}
+.RelatedVideoRow_title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;     /* fallback */
+    max-height: 32px;      /* fallback */
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}

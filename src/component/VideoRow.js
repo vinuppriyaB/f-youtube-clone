@@ -1,6 +1,7 @@
 import React from 'react';
 import "../VideoRow.css";
 import Avatar from '@mui/material/Avatar';
+import { useHistory } from 'react-router';
 
 
 const VideoRow = (
@@ -11,15 +12,19 @@ const VideoRow = (
         image2,
         timestamp,
         views,
-        description
+        description,
+        id
 
 }
+
 ) => {
+    const history = useHistory();
     return (
-        <div className="videoRow">
+        <div className="videoRow" onClick={()=>history.push(`/watch/${id}`)}>
 
         <img className="videorow_image"
-        src={image1} alt={title}/>
+        src={image1}  alt={title}/>
+        <div className="videoRow_textbox">
         <div className="videoRow_text">
         <h4>{title}</h4>
         <p>{views} views {timestamp}</p>
@@ -29,8 +34,8 @@ const VideoRow = (
         <p>{channel}</p>
         </div>
         
-
-        <p> {description}</p>
+        <p className="videoRow_description"> {description}</p>
+        </div>
         </div>
 
 
@@ -40,3 +45,6 @@ const VideoRow = (
 }
 
 export default VideoRow
+
+
+        //

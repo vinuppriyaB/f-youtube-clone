@@ -1,10 +1,46 @@
 .RecommendedVideo{
-    flex:.850;
+    
     display: flex;
     justify-content:space-between;
+    align-items: flex-start;
     flex-wrap: wrap;
     padding:20px 50px;
-    row-gap: 25px;
-    background-color: rgb(31, 29, 30);
+    row-gap:25px;
+    /* min-width:375px; */
+    margin-left: 200px;
+    /* height: 90vh; */
+    /* background-color: rgb(250, 249, 249); */
+    
+    
 
 }
+@media screen and (max-width: 1313px) {
+    .RecommendedVideo{
+
+        display: flex;
+        justify-content:space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding:20px 50px;
+        row-gap:25px;
+        margin-left: 85px;
+        min-width:320px;
+        /* height: 100vh; */
+        background-color: rgb(250, 249, 249);
+        background-color: tomato;
+        
+    
+    }
+}
+/* .search_channel{
+    background-color: rgb(243, 172, 172);
+    margin-left: 200px;
+    min-width:420px;
+    /* width: 100vw; */
+/*
+@media screen and (max-width: 1313px) {
+    .search_channel{
+        background-color: rgb(243, 172, 172);
+        margin-left: 85px;
+        width:100%;
+    } */

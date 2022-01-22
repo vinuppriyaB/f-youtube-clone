@@ -1,8 +1,10 @@
 import React,{useState,useEffect} from 'react';
-import "../RecommendedVideo.css";
-import VideoCard from './VideoCard';
-import Tags from "./Tags";
-import { ForkRightRounded } from '@mui/icons-material';
+import "../RelatedVideo.css";
+import Tags from './Tags';
+
+import Avatar from '@mui/material/Avatar';
+import { useHistory } from 'react-router-dom';
+
 
 const data=[
     {
@@ -88,8 +90,7 @@ const data=[
     },
 ]
 
-const RecommendedVideo = ({searchItem,setSearchItem}) => {
-    const[ allChannel,setAllChannel ]=useState([]);
+const RelatedVideo = () => {
     const [recommandedVideos,setRecommondedVideos]=useState([]);
     useEffect(()=> getchannel(),[])
 let video=[];
@@ -105,11 +106,10 @@ let video=[];
                
       }
     return (
-        <div className="RecommendedVideo">
-        
-        {recommandedVideos.map((v,index)=>{
-            console.log(v.video._id)
-            return <VideoCard
+        <div className="RelatedVideo">
+
+        {recommandedVideos.map((v,index)=>(
+            <RelatedVideoRow
             key={index}
             id={v.video._id}
 
@@ -121,10 +121,42 @@ let video=[];
             views={v.video.views}
             
             />
-        }) }
+    ))}
+        
+       
         </div>
-
     )
 }
 
-export default RecommendedVideo
+
+function RelatedVideoRow({
+    title,
+    channel,
+    image1,
+    image2,
+    timestamp,
+    views,
+    description,
+    id
+
+}){
+    const history=useHistory();
+    return(
+        <div className="RelatedVideoRow" onClick={()=>history.push(`/watch/${id}`)}>
+
+        <img className="RelatedVideoRow_image"
+        src={image1} alt={title}/>
+        <div className="RelatedVideoRow_text">
+        <h4 className="RelatedVideoRow_title">{title}</h4>
+        <p>{channel}</p>
+        <p>{views} views {timestamp}</p>
+        </div>
+        </div>
+    )
+}
+
+
+
+export default RelatedVideo
+
+

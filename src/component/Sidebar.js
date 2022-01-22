@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import "../Sidebar.css";
-import SidebarRow from './SidebarRow';
+import {SidebarRow} from './SidebarRow';
 import HomeIcon from '@mui/icons-material/Home';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
@@ -11,6 +11,9 @@ import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import WatchLaterOutlinedIcon from '@mui/icons-material/WatchLaterOutlined';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import { useParams } from "react-router-dom";
+import { useHistory } from 'react-router';
+
 const sidebardata=[
     {
         "title":"Home",
@@ -24,12 +27,7 @@ const sidebardata=[
         "selected":false,
         "space":true,
     },
-    {
-        "title":"Trending",
-        "icon":<WhatshotIcon/>,
-        "selected":false,
-        "space":true,
-    },
+
     {
         "title":"Subscription",
         "icon":<SubscriptionsIcon/>,
@@ -70,12 +68,14 @@ const sidebardata=[
     },
 ]
 
-const Sidebar = () => {
+export const Sidebar = () => {
+    const { searchitem } = useParams();
     let selectedValue=new Array(sidebardata.length);
     sidebardata.forEach((item,index)=> selectedValue[index]=item.selected);
     const [select,setSelect]=useState(selectedValue);
     
     return (
+
         <div className="sidebar" >
            {sidebardata.map((d,index)=>{
                
@@ -91,8 +91,67 @@ const Sidebar = () => {
                         
                     />
                 })}
+                </div>
+                
+                
+        
+       
+    )
+}
+export const SSSidebar = () => {
+    const [select,setSelect]=useState([]);
+    const history = useHistory();
+    const{feed}=useParams();
+
+    const initialselect=()=>{
+        
+        if(feed=="explore")
+        setSelect([false,true,false])
+        else if(feed=="subscribe")
+        setSelect([false,false,true])
+        else
+        setSelect([true,false,false])
+
+    }
+    useEffect(()=>{initialselect()},[useParams()])
+        
+   
+    
+    const sidebarSelection=()=>{
+
+    }
+    return (
+        <div className="SSsidebar" >
+            <div className={` ssidebarRow ${select[0] && "selected"}`} 
+            onClick={()=>{history.push("/home/home")
+            }}
+            >
+            <HomeIcon/>
+            <p>Home</p>
+            </div>
+            <div className={`ssidebarRow ${select[1] && "selected"}`} 
+            onClick={()=>{
+                history.push("/explore/explore");
+                
+            }}>
+            <ExploreIcon/>
+            <p>Explore</p>
+            </div>
+            <div className={`ssidebarRow ${select[2] && "selected"}`} 
+             onClick={()=>{
+                history.push("/subscribe/subscribe");
+                
+            }}>
+            <SubscriptionsIcon/>
+            <p>Subscription</p>
+            </div>
+            <div className="library">
+            <VideoLibraryIcon/>
+            <p>Library</p>
+            </div>
+
         </div>
     )
 }
 
-export default Sidebar
+

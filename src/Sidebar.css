@@ -1,3 +1,53 @@
 .sidebar{
-    flex:.150;
+    position: fixed;
+    top:82px;
+    z-index: 100;
+    margin-right: 20px;
+  
+    
+}
+.SSsidebar{
+    display: none;
+
+}
+@media screen and (max-width: 1313px) {
+    .sidebar{
+        display: none;
+    }
+    .SSsidebar{
+        display:flex;
+        
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        padding: 5px 0px;
+        gap: 10px;
+        margin:0px;
+        position: fixed;
+        top:77px;
+        z-index: 100;
+    
+        /* background-color: tomato; */
+    
+    }
+    .ssidebarRow{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 5px 3px;
+        margin:0px;
+    
+    }
+    
+    .ssidebarRow.selected{
+        background-color: lightgrey;
+    }
+}
+.SSsidebar>div{
+    text-align: center;
+    font-size: small;
+}
+.SSsidebar>div>p{
+    text-align: center;
 }

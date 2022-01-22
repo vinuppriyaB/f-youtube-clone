@@ -12,20 +12,24 @@ const ChannelRow = ({
         description
 }) => {
     return (
-        <>
         <div className="channelRow">
+        <>
         <Avatar className="channelRow_logo"
-        alt="Travis Howard" src={image} />
+        alt={channelName} src={image} />
         <div className="ChannelRow_text">
         <h4>{channelName}</h4>
         <p>{subscribers} subscribers . {noOfVideos} videos</p>
         <p>{description}</p>
         
-          </div>  
-          
-        </div>
+          </div> 
+          <div>
+         
+          </div> 
+
+        
         <hr/>
         </>
+        </div>
     )
 }
 

@@ -8,9 +8,12 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import Button from '@mui/material/Button';
+import { useHistory } from 'react-router';
 
-const Header = () => {
-    const [searchItem,setSearchItem]=useState("");
+const Header = ({searchItem,setSearchItem,currentUser,setCurrentUser}) => {
+const history=useHistory();
+console.log(currentUser)
     return (
         <div className="header">
             <div className="header__left">
@@ -23,14 +26,16 @@ const Header = () => {
                 </Link>
                
             </div>
+            
             <div className="header__input">
                 <input placeholder="Search..." 
-                type="text"
+                type="search"
+                
                 value={searchItem}
                 onChange={(e)=>setSearchItem(e.target.value)}
                 />
                 <Link to={`/search/${searchItem}`}>
-                <SearchIcon className="header__inputButton"/>
+                <SearchIcon className="header__searchButton"/>
                 </Link>
 
                 
@@ -39,8 +44,11 @@ const Header = () => {
                 <VideoCallIcon className="header__icon"/>
                 <AppsIcon className="header__icon"/>
                 <NotificationsIcon className="header__icon" />
-                <Avatar alt="Travis Howard" className="header__icon"
-                src="/static/images/avatar/2.jpg" />
+                {currentUser? <Avatar alt={currentUser} className="header__icon"
+                src="/static/images/avatar/2.jpg" /> : 
+                <Button variant="outlined"
+                onClick={()=>history.push("/signin")}
+                >sign in</Button> }
             </div>
         </div>
     )
