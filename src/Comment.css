@@ -1,0 +1,118 @@
+.Comment_area{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    font-weight:bold;
+    
+
+}
+.total_comment{
+    margin:20px 0px;
+}
+.total_comment>h3{
+    font-weight: 450;
+    font-size: 18px;
+}
+.comment_write{
+    margin-top:20px;
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    /* background-color: blue; */
+    /* margin-top:20px; */
+}
+.comment_col2{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    /* background-color: brown; */
+    align-items: flex-end;
+    gap: 5px;
+}
+.comment_read{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    margin-top:20px;
+    /* background-color: blue; */
+    /* margin-top:20px ; */
+
+}
+.comment_btn{
+    background-color: rgb(235, 233, 233) !important;
+    color:rgb(153, 151, 151) !important;
+}
+.cancel_btn{
+    color:rgb(71, 70, 70) !important;
+}
+
+
+.commentread_col2{
+    display: flex;
+    flex-direction: column;
+    /* gap: 5px; */
+    /* background-color: cadetblue; */
+    width: 100%;
+}
+
+.reply_write{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    /* background-color: blue; */
+    margin-top:20px ;
+}
+.reply_col2{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    /* background-color: brown; */
+    align-items: flex-end;
+    gap: 10px;
+
+}
+.commentread_col2row3{
+    display: flex;
+    align-items: center;
+}
+.commentread_col2row3>Button{
+    color:rgb(37, 37, 37) !important;
+}
+.commentread_col2row5>Button{
+    text-transform: none !important;
+
+}
+.commentread_col2row1>h4{
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-family: "Roboto", "Noto", sans-serif;
+
+}
+.commentread_col2row2>p{
+    font-weight: 450;
+    font-size: 14px;
+    margin-bottom: 3px;
+    color:rgb(37, 37, 37) !important;
+
+}
+/* .commentread_col2row5{
+    background-color: green;
+    margin:0px !important;
+}
+.commentread_col2row3{
+    background-color: green;
+    margin:0px !important;
+} */
+.commentread_col2row3>Button{
+    color:gray !important;
+    font-size: 12px !important;
+    
+}
+.watchVideo_icon{
+    font-size: 15px !important;
+    color:rgb(37, 37, 37) !important;
+}
+/* .comment_read{
+    background-color: greenyellow;
+} */

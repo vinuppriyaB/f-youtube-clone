@@ -1,0 +1,46 @@
+.reply_read{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    /* background-color: blue; */
+    margin-top:10px;
+
+}
+
+.replyread_col2{
+    display: flex;
+    flex-direction: column;
+    /* gap: 5px; */
+    /* background-color: cadetblue; */
+    width: 100%;
+}
+.replyread_col2row3{
+    display: flex;
+    align-items: center;
+}
+.replyread_col2row3>Button{
+    color:gray !important;
+    font-size: 12px !important;
+}
+
+.watchVideo_icon{
+    font-size: 15px !important;
+    color:rgb(37, 37, 37) !important;
+}
+.replyread_col2row1>h4{
+    font-size: 14px;
+    margin-bottom: 5px;
+
+}
+.replyread_col2row2>p{
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 3px;
+    color:rgb(37, 37, 37) !important;
+
+}
+.reply_avatar{
+    height: 25px !important;
+  width: 25px !important;
+  
+}

@@ -1,0 +1,26 @@
+.postvideo{
+    
+    display: flex;
+    flex-direction: column;
+    
+    height:50vh;
+    gap:20px;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+@media screen and (max-width: 1313px) {
+    .postvideo{
+        margin-left:10px; 
+        min-width:450px;
+       
+    }
+}
+        
+.login_textfield{
+    width: 70%;
+    font-size: 17px;
+    padding: 10px 10px;
+    
+}  

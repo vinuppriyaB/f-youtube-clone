@@ -88,17 +88,21 @@ const data=[
     },
 ]
 
-const RecommendedVideo = ({searchItem,setSearchItem}) => {
+const RecommendedVideo = ({searchItem,setSearchItem,setUserName,userName,
+    userEmail,
+    setUserEmail,
+    profilePic,
+    setProfilePic}) => {
     const[ allChannel,setAllChannel ]=useState([]);
     const [recommandedVideos,setRecommondedVideos]=useState([]);
     useEffect(()=> getchannel(),[])
-let video=[];
+
     const getchannel=()=>{
          fetch("http://localhost:8000/channel/getvideos",
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{
-            console.log(res)
+            // console.log(res)
             setRecommondedVideos(res)
             
         });
@@ -108,7 +112,7 @@ let video=[];
         <div className="RecommendedVideo">
         
         {recommandedVideos.map((v,index)=>{
-            console.log(v.video._id)
+            // console.log(v.video._id)
             return <VideoCard
             key={index}
             id={v.video._id}

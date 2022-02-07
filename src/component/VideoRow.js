@@ -1,8 +1,7 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import "../VideoRow.css";
 import Avatar from '@mui/material/Avatar';
 import { useHistory } from 'react-router';
-
 
 const VideoRow = (
     {
@@ -17,17 +16,55 @@ const VideoRow = (
 
 }
 
+
 ) => {
+    let temp=timestamp.split(" ");
+    let date="";
+    if(temp.length>3)
+    {
+     date=temp[1]+" "+temp[2]+","+temp[3];
+    }
+    else{
+       date=timestamp;
+    }
     const history = useHistory();
+    const [view,setView]=useState(views)
+    const viewUpdate=(title,channelName)=>{
+        // console.log(id,channelName)
+        const updateOn={
+             title:title,
+            channelName:channel,
+            
+        }
+            fetch("http://localhost:8000/channel/updateview",
+            {
+                method:"PUT",
+                body: JSON.stringify(updateOn),
+                headers:{"Content-Type":"application/json"},
+            }).then((res)=>{
+                if(res.status==200)
+                {
+                    setView(view+1)
+                }
+                
+            }).catch((e)=> console.log("ERROR"))  
+        
+    }
+
+
+
     return (
-        <div className="videoRow" onClick={()=>history.push(`/watch/${id}`)}>
+        <div className="videoRow" onClick={()=>{
+            viewUpdate(title,channel)
+            history.push(`/watch/${id}`)
+        }}>
 
         <img className="videorow_image"
         src={image1}  alt={title}/>
         <div className="videoRow_textbox">
         <div className="videoRow_text">
         <h4>{title}</h4>
-        <p>{views} views {timestamp}</p>
+        <p>{views} views {date}</p>
         <div className="videoRow_channel">
         <Avatar className="videoRow_Avatar"
         alt={channel} src={image2} />
@@ -47,4 +84,4 @@ const VideoRow = (
 export default VideoRow
 
 
-        //
+    

@@ -3,14 +3,14 @@
     margin-top: 20px;
     height:200px; 
     min-width:390px;
+    margin-bottom: 20px;
     /* background-color: violet; */
 }
 
 .videorow_image{
     height:100%;
-    width:40%;
-    object-fit:fill;
-    /* background-color: tomato; */
+    width:30%;
+   
 }
 .videoRow_textbox{
     width:60%;

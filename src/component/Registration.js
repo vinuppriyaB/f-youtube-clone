@@ -5,31 +5,39 @@ import { useHistory } from "react-router";
 import { useState } from "react";
 import Paper from '@mui/material/Paper';
 import "../Login.css";
+import axios from "axios";
 
 
 
-export const Registration=({setCurrentUser,currentUser})=>{
+export const Registration=({setCurrentUser,currentUser,userName,
+    setUserName,
+    userEmail,
+    setUserEmail,
+    profilePic,
+    setProfilePic})=>{
     
 
-    
+        // console.log(userName,userEmail,profilePic)  
     const[firstName,setFirstName]=useState("");
     const[lastName,setLastName]=useState("")
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [ProPic,setProPic]=useState("");
     
     
     const history = useHistory();
     const resetLoginForm = (event) => {
                 setEmail("");
             setPassword("");
+            setProfilePic("");
           
             
         };
-    const registrationprocess = () => {  
-        const registerUser={firstName:firstName,lastName:lastName,email:email,password:password }; 
+    const registrationprocess = async() => {  
+        const registerUser={firstName:firstName,lastName:lastName,email:email,password:password,profilePic:ProPic }; 
         
         
-        fetch("http://localhost:8000/register/signup",
+      await fetch("http://localhost:8000/register/signup",
     {
         method:"POST",
         body: JSON.stringify(registerUser),
@@ -38,7 +46,36 @@ export const Registration=({setCurrentUser,currentUser})=>{
         setCurrentUser(email)
         if(res.status==200)
           {
-            history.push("/");
+            
+                try{
+                    var response= axios.post("http://localhost:8000/channel",{
+                        channelName:`${firstName} ${lastName}`,
+                        email:email,
+                        logo:ProPic,
+                        
+                })
+            
+                // console.log(response.data);
+                  
+                
+                }catch(e){
+                    console.warn(e)
+                }
+           
+        
+            setTimeout(() => {
+                setUserName(firstName);
+            setUserEmail(email);
+            setProfilePic(ProPic);
+            resetLoginForm();
+            history.push("/"); 
+
+
+            }, 2000);
+
+            
+            
+
             
           }
           else
@@ -49,7 +86,7 @@ export const Registration=({setCurrentUser,currentUser})=>{
           }
          
         
-        resetLoginForm();
+
     }).catch((e)=> console.log("ERROR"))  
 }
 
@@ -104,6 +141,15 @@ export const Registration=({setCurrentUser,currentUser})=>{
         type='password'
         value={password}
         onChange={event => setPassword(event.target.value)}
+        variant="outlined" />
+
+        <input
+        type="text" 
+        className="login_textfield"
+        placeholder='Profile PictureLink' 
+        type='profile'
+        value={ProPic}
+        onChange={event => setProPic(event.target.value)}
         variant="outlined" />
 
            <div className="Login_bottom">

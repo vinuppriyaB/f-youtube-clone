@@ -99,7 +99,7 @@ let video=[];
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{
-            console.log(res)
+            // console.log(res)
             setRecommondedVideos(res)
             
         });
@@ -140,16 +140,50 @@ function RelatedVideoRow({
     id
 
 }){
+    let temp=timestamp.split(" ");
+        let date="";
+        if(temp.length>3)
+        {
+        date=temp[1]+" "+temp[2]+","+temp[3];
+        }
+        else{
+        date=timestamp;
+        }
     const history=useHistory();
+    const [view,setView]=useState(views)
+    const viewUpdate=(title,channelName)=>{
+        // console.log(id,channelName)
+        const updateOn={
+             title:title,
+            channelName:channel,
+            
+        }
+            fetch("http://localhost:8000/channel/updateview",
+            {
+                method:"PUT",
+                body: JSON.stringify(updateOn),
+                headers:{"Content-Type":"application/json"},
+            }).then((res)=>{
+                if(res.status==200)
+                {
+                    setView(view+1)
+                }
+                
+            }).catch((e)=> console.log("ERROR"))  
+        
+    }
     return(
-        <div className="RelatedVideoRow" onClick={()=>history.push(`/watch/${id}`)}>
+        <div className="RelatedVideoRow" onClick={()=>{
+            viewUpdate(title,channel)
+            history.push(`/watch/${id}`)
+        }}>
 
         <img className="RelatedVideoRow_image"
         src={image1} alt={title}/>
         <div className="RelatedVideoRow_text">
         <h4 className="RelatedVideoRow_title">{title}</h4>
         <p>{channel}</p>
-        <p>{views} views {timestamp}</p>
+        <p>{views} views {date}</p>
         </div>
         </div>
     )

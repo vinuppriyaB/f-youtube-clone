@@ -1,0 +1,78 @@
+.channelPage{
+    
+    display: flex;
+    flex-direction: column;
+    
+    /* padding:20px 50px; */
+    width:1650px;
+    margin-left: 250px;
+    /* height: 90vh; */
+    /* background-color: rgb(250, 27, 27); */
+    
+    
+
+}
+.channelPage_displaydetails{
+    padding: 20px 100px;
+    
+}
+@media screen and (max-width: 1313px) {
+    .channelPage{
+
+        
+        /* padding:20px 50px; */
+        
+        margin-left: 85px;
+        min-width:450px;
+        /* height: 100vh; */
+        /* background-color: rgb(207, 13, 13); */
+        /* background-color: tomato; */
+        
+    
+    }
+    .channelPage_displaydetails{
+        padding: 20px 0px;
+        /* background-color: tomato; */
+        /* max-width:750px; */
+    }
+
+    
+}
+.channelPage_coverImage{
+    height:270px;
+    width:99%;
+}
+
+
+.channelPage_channeldetails{
+    display: flex;
+    align-items: center;
+
+}
+.channelPage_text{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+.channelPage_text>p{
+    color:rgb(95, 94, 94);
+    font-size:15px  !important;
+}
+.channelPage_logo{
+    height: 90px !important;
+    width: 90px !important;
+    margin:10px 20px;
+}
+.channelPage_video{
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+
+}
+.channelPage_TabList{
+
+   position: sticky !important;
+   top:80px !important;
+   z-index: 700 !important;
+   background-color: white;
+}

@@ -6,6 +6,7 @@ import VideoRow from './VideoRow';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import VideoCard from './VideoCard';
 
 
 // const channel=[
@@ -119,27 +120,49 @@ import { useParams } from "react-router-dom";
 //     }
 // ]
 
-const SearchVideo = ({searchItem,setSearchItem}) => {
+const SearchVideo = ({searchItem,setSearchItem,userEmail}) => {
     const { searchitem } = useParams();
     const [channel,setChannel]=useState([]);
     const [video,setVideo]=useState([]);
-    useEffect(()=> getchannel(),[searchitem])
-console.log(searchitem)
+    const [subscriber,setSubscriber]=useState("");
+    // getchannel();
+    // console.log(searchitem)
+    useEffect(()=> {
+        getallchannel()
+        getchannel()},[searchItem,setSearchItem,searchitem])
+
 const getchannel=()=>{
+    console.log("ghbhc")
      fetch(`http://localhost:8000/channel/search1/${searchitem}`,
     {method:"GET",})
     .then((data)=>data.json())
     .then((res)=>{
-        console.log(res)
+        // console.log(res)
         setChannel(res)
         setVideo(res.video)
     });
            
   }
+
+  const [recommandedVideos,setRecommondedVideos]=useState([]);
+    useEffect(()=> getallchannel(),[])
+
+    const getallchannel=()=>{
+         fetch("http://localhost:8000/channel/getvideos",
+        {method:"GET",})
+        .then((data)=>data.json())
+        .then((res)=>{
+            // console.log(res)
+            setRecommondedVideos(res)
+            
+        });
+               
+      }
   
-console.log(video);
+console.log(channel);
+console.log(channel.length);
     return (
-        <div className="search_channel">
+         <div className="search_channel">
         <div className="searchvideo">
         <div className="searchvideo_filter">
         <TuneOutlinedIcon/>
@@ -147,21 +170,27 @@ console.log(video);
 
         </div>
         <hr/>
-        <div>
+        {(video.length>0)? <div className="channel_detail">
         <ChannelRow
         image={channel.logo}
         channelName={channel.channelName}
-        subscribers={channel.subscriber}
+        subscriber={channel.subscriber}
+        setSubscriber={setSubscriber}
+        userEmail={userEmail}
         noOfVideos="250"
+        logo={channel.logo}
         verified
         description={channel.ChannelMoto}
         />
-        </div>
         <hr/>
+        </div>:""}
+
         <div>
-        {video.map((d,index)=>(
-                 <VideoRow
+        {video.map((d,index)=>{
+           
+               return  <VideoRow
                  key={index}
+                 id={d._id}
                  title={d.title}
                  channel={channel.channelName}
                  image1={d.imageLink}
@@ -169,13 +198,32 @@ console.log(video);
                  timestamp={d.timestamp}
                  views={d.views}
                  description={d.description}
-                 
                  />
-             )) }
+        }) }
+        
         </div>
 
 
 
+        </div>
+
+        <div className="searchvideo">
+        {recommandedVideos.map((v,index)=>{
+            
+            return <VideoRow
+            key={index}
+            id={v.video._id}
+
+            title={v.video.title}
+            channel={v.channelName}
+            image1={v.video.imageLink}
+            image2={v.logo}
+            timestamp={v.video.timestamp}
+            views={v.video.views}
+            description={v.video.description}
+            
+            />
+        }) }
         </div>
         </div>
     )

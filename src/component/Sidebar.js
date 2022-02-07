@@ -14,7 +14,7 @@ import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDown
 import { useParams } from "react-router-dom";
 import { useHistory } from 'react-router';
 
-const sidebardata=[
+const data=[
     {
         "title":"Home",
         "icon":<HomeIcon/>,
@@ -68,16 +68,63 @@ const sidebardata=[
     },
 ]
 
-export const Sidebar = () => {
+export const Sidebar = ({userEmail,setUserEmail}) => {
+ const [sidedata,setSideData]=useState([])
+    let sidebardata=[];
+    let sub=[];
     const { searchitem } = useParams();
-    let selectedValue=new Array(sidebardata.length);
-    sidebardata.forEach((item,index)=> selectedValue[index]=item.selected);
-    const [select,setSelect]=useState(selectedValue);
     
+    const [subChannel,setSubChannel]=useState([]);
+
+    
+
+    const getchannel=()=>{
+        if(userEmail)
+        {
+            
+            sidebardata=[];
+        
+        
+        console.log(sidebardata.length,sidebardata)
+         fetch(`http://localhost:8000/register/getsubscribechannel/${userEmail}`,
+        {method:"GET",})
+        .then((data)=>data.json())
+        .then((res)=>{
+            // console.log(res)
+            // setSubChannel(res)
+            for(let i=0;i<res.length;i++)
+            {
+                let temp={
+                    channelName:res[i].channelName,
+                    logo:res[i].logo,
+                    selected:false,
+                }  
+                sub.push(temp);
+
+            }
+            sidebardata=[...data,...sub];
+            setSideData(sidebardata)
+            console.log(sidebardata.length,sidebardata)
+        });
+    }
+        
+              
+      }
+      
+      useEffect(()=> {
+        setTimeout(() => {
+            getchannel()
+        }, 0);
+      } ,[])
+
+      let selectedValue=new Array(sidebardata.length);
+      sidebardata.forEach((item,index)=> selectedValue[index]=item.selected);
+    const [select,setSelect]=useState(selectedValue);
+    console.log(sidebardata)
     return (
 
         <div className="sidebar" >
-           {sidebardata.map((d,index)=>{
+           {sidedata.map((d,index)=>{
                
              return  <SidebarRow
                         key={index}
@@ -87,10 +134,14 @@ export const Sidebar = () => {
                         select={select}
                         setSelect={setSelect}
                         space={d.space}
+                        logo={d.logo}
+                        channelName={d.channelName}
                        
                         
                     />
                 })}
+                
+
                 </div>
                 
                 

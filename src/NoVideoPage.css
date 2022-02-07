@@ -1,0 +1,18 @@
+.Novideo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:50vh;
+    row-gap:20px;
+    width: 100%;
+text-align: center;
+
+
+}
+
+.text_head{
+    font-size: 30px;
+    font-weight: 10px;
+    margin-bottom: 5px;
+}

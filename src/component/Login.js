@@ -5,10 +5,16 @@ import { useHistory } from "react-router";
 import { useState } from "react";
 import Paper from '@mui/material/Paper';
 import "../Login.css";
+import axios from "axios";
 
 
 
-export const Login=({setCurrentUser,currentUser})=>{
+export const Login=({setCurrentUser,currentUser,userName,
+    setUserName,
+    userEmail,
+    setUserEmail,
+    profilePic,
+    setProfilePic})=>{
     
 
     
@@ -24,32 +30,62 @@ export const Login=({setCurrentUser,currentUser})=>{
           
             
         };
-    const loginprocess = () => {  
+    const loginprocess = async() => {  
         const loginuser={email:email,password:password }; 
-        
-        
-        fetch("http://localhost:8000/register/signin",
-    {
-        method:"POST",
-        body: JSON.stringify(loginuser),
-        headers:{"Content-Type":"application/json"},
-    }).then((res)=>{
-        setCurrentUser(email)
-        if(res.status==200)
-          {
-            history.push("/");
 
-          }
-          else
-          {
+        try{
+            var response=await axios.post("http://localhost:8000/register/signin",{
+            email:email,
+            password:password
+        })
+       
+        // console.log(response.data);
             
-            window.alert("Invalid user account");
+        if(response.data)
+        {
+            await localStorage.setItem("token",response.data.token);
+            localStorage.setItem("firstName",response.data.firstName);
+            localStorage.setItem("email",response.data.email);
+            localStorage.setItem("profilePic",response.data.profilePic);
+            setUserName(response.data.firstName);
+            setUserEmail(response.data.email);
+            setProfilePic(response.data.profilePic);
 
-          }
+
+            history.push("/");
+            // console.log(userName)
+           
+            
+        }
+        }catch(e){
+            console.warn(e)
+        }
+        
+    //     fetch("http://localhost:8000/register/signin",
+    // {
+    //     method:"POST",
+    //     body: JSON.stringify(loginuser),
+    //     headers:{"Content-Type":"application/json"},
+    // }).then((data)=>data.json())
+    // .then((res)=>{
+    //     setCurrentUser(email)
+    //     console.log(res);
+    //     if(res.status==200)
+    //       {
+        
+    //         history.push("/");
+
+    //       }
+    //       else
+    //       {
+            
+    //         window.alert("Invalid user account");
+
+    //       }
          
         
-        resetLoginForm();
-    }).catch((e)=> console.log("ERROR"))  
+    //     resetLoginForm();
+    // }).catch((e)=> console.log("ERROR"))  
 }
 
     return(
@@ -115,58 +151,6 @@ export const Login=({setCurrentUser,currentUser})=>{
 }
 
 export default Login
-
-
-// const paperStyle={padding :50,height:'50vh',width:380, margin:"100px auto"}
-//     const avatarStyle={backgroundColor:"#51459E"}
-//     const btnstyle={margin:'20px 0',backgroundColor:"green"}
-//     const textstyle={margin:'20px 0'}
-//     <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-//     <TextField id="outlined-basic"
-//     variant="outlined" 
-//     label='Email' 
-//     placeholder='Enter email'  
-    
-//     value={email}
-//     onChange={event => setEmail(event.target.value)}
-//     />
-
-
-//     <TextField 
-//     label='Password' 
-//     placeholder='Enter password'  
-    
-//     type='password' 
-    
-//     value={password}
-//     onChange={event => setPassword(event.target.value)}
-//     />
-    
-//     <Button type='submit' 
-//     className="btn-color"
-//     color='primary' 
-//     variant="contained" 
-
-//     // fullWidth
-//     onClick={() => {loginprocess()
-//     }}
-//     >Sign in</Button>
-//     <Typography >
-//          <Link href="#" >
-//             Forgot password ?
-//     </Link>
-//     </Typography>
-    
-//     <Typography > Don't you have an account ?
-//     <Button variant="text" 
-    
-    
-//     onClick={()=>history.push("/")} 
-//     > sign up
-//     </Button>
-//     </Typography>
-
-// </div>
 
 
 

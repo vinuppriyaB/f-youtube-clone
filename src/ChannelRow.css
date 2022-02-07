@@ -1,13 +1,25 @@
 .channelRow{
     display: flex;
     align-items: center;
-     justify-content: center;
+     /* justify-content: center; */
+     /* width: 900px; */
    
 }
 .channelRow_logo{
     height: 120px !important;
     width: 120px !important;
     margin:10px 20px;
+}
+.ChannelRow_detail{
+    display: flex;
+flex:1;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-right: 50px; */
+}
+.btn_color{
+    background-color: rgb(204, 9, 9) !important;
+    color:white !important;
 }
 .ChannelRow_text{
     display: flex;

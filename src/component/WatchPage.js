@@ -30,8 +30,8 @@ const data=[{
 
     }]
 
-const WatchPage = ({searchItem,setSearchItem,currentUser,setCurrentUser}) => {
-    console.log(currentUser)
+const WatchPage = ({searchItem,setSearchItem,currentUser,setCurrentUser,userName,userEmail,profilePic}) => {
+    console.log(userName,userEmail,profilePic)
     const {watchitem} =useParams();
     const [videoLink,setVideoLink]=useState("");
     const [title,setTitle]=useState("");
@@ -40,38 +40,46 @@ const WatchPage = ({searchItem,setSearchItem,currentUser,setCurrentUser}) => {
     const [logo,setLogo]=useState("");
     const [channelName,setChannelName]=useState("");
     const [like,setLike]=useState("");
+    const [dislike,setDisLike]=useState("");
     const [description,setDescription]=useState("");
     const [timestamp,setTimestamp]=useState("");
     const [id,setId]=useState("");
+    // const [profilePic,setProfilePic]=useState("");
+    const [allComment,setAllcomment]=([]);
 
     const [watchVideo,setWatchVideos]=useState([]);
     useEffect(()=> getchannel(),[watchitem])
 let video=[];
+let commenttext=[];
     const getchannel=()=>{
          fetch(`http://localhost:8000/channel/watchvideo/${watchitem}`,
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{
-            console.log(res);
+            // console.log(res);
             setChannelName(res[0].channelName);
             setSubscriber(res[0].subscriber)
             setTitle(res[0].video.title);
             setViews(res[0].video.views);
             setLogo(res[0].logo);
             setLike(res[0].video.like)
+            setDisLike(res[0].video.dislike)
             setVideoLink(res[0].video.videoLink)
             setTimestamp(res[0].video.timestamp)
             setDescription(res[0].video.description)
             setId(res[0].video._id)
+            // console.log(res[0].video.comment.length);
+            for(let i=0;i<res[0].video.comment.length;i++)
+            {
+                let temp=res[0].video.comment[i];
+                commenttext[i]={...temp};
+            }
+
+
         });
                
       }
-    //   console.log(title,
-    //     view,
-    //     subscriber,
-    //     logo,
-    //     channelName,
-    //     like)
+    //   console.log(commenttext);
     return (
         <div className="watch_page">
         <div className="watch_video_detail">
@@ -85,13 +93,19 @@ let video=[];
             logo={logo}
             channelName={channelName}
             like={like}
+            dislike={dislike}
             description={description}
             timestamp={timestamp}
             id={id}
             setLike={setLike}
+            setDisLike={setDisLike}
             currentUser={currentUser} 
             setCurrentUser={setCurrentUser}
-
+            allComment={allComment}
+            userName={userName}
+            userEmail={userEmail}
+            profilePic={profilePic}
+            setSubscriber={setSubscriber}
             />
             
 

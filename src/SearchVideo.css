@@ -48,3 +48,50 @@
     color:gray;
     margin: 10px 0px;
 }
+
+.RecommendedVideos{
+    
+    display: flex;
+    justify-content:space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding:20px 50px;
+    row-gap:25px;
+    /* min-width:375px; */
+   
+    /* height: 90vh; */
+    /* background-color: rgb(250, 249, 249); */
+    
+    
+
+}
+@media screen and (max-width: 1313px) {
+    .RecommendedVideos{
+
+        display: flex;
+        justify-content:space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding:20px 50px;
+        row-gap:25px;
+        
+        /* min-width:320px; */
+        /* height: 100vh; */
+        background-color: rgb(250, 249, 249);
+        /* background-color: tomato; */
+        
+    
+    }
+}
+/* .search_channel{
+    background-color: rgb(243, 172, 172);
+    margin-left: 200px;
+    min-width:420px;
+    /* width: 100vw; */
+/*
+@media screen and (max-width: 1313px) {
+    .search_channel{
+        background-color: rgb(243, 172, 172);
+        margin-left: 85px;
+        width:100%;
+    } */
