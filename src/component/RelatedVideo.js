@@ -95,7 +95,7 @@ const RelatedVideo = () => {
     useEffect(()=> getchannel(),[])
 let video=[];
     const getchannel=()=>{
-         fetch("http://localhost:8000/channel/getvideos",
+         fetch("https://youtubeclonee.herokuapp.com/channel/getvideos",
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{
@@ -158,7 +158,7 @@ function RelatedVideoRow({
             channelName:channel,
             
         }
-            fetch("http://localhost:8000/channel/updateview",
+            fetch("https://youtubeclonee.herokuapp.com/channel/updateview",
             {
                 method:"PUT",
                 body: JSON.stringify(updateOn),

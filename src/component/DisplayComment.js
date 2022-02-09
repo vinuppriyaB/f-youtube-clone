@@ -50,7 +50,7 @@ const DisplayComment = ({
             useEffect(()=> getReply(),[])
     let video=[];
         const getReply=()=>{
-             fetch(`http://localhost:8000/channel/getreply/${watchitem}/${commentId}`,
+             fetch(`https://youtubeclonee.herokuapp.com/channel/getreply/${watchitem}/${commentId}`,
             {method:"GET",})
             .then((data)=>data.json())
             .then((res)=>{
@@ -78,7 +78,7 @@ const DisplayComment = ({
             
             // console.log(reply)
         
-                fetch("http://localhost:8000/channel/postreply",
+                fetch("https://youtubeclonee.herokuapp.com/channel/postreply",
                 {
                     method:"POST",
                     body: JSON.stringify(reply),
@@ -100,7 +100,7 @@ const DisplayComment = ({
                 commentText:text,
                 clicked:clicked,
             }
-            fetch("http://localhost:8000/channel/updateCommentLike",
+            fetch("https://youtubeclonee.herokuapp.com/channel/updateCommentLike",
        {
            method:"PUT",
            body: JSON.stringify(updateOn),

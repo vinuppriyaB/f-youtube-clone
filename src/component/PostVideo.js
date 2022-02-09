@@ -24,7 +24,7 @@ export const PostVideo = ({userName,userEmail,profilePic,channelName}) => {
         
 
         try{
-            var response=await axios.post("http://localhost:8000/channel/postvideo",{
+            var response=await axios.post("https://youtubeclonee.herokuapp.com/channel/postvideo",{
                 channelName:channelName,
                 email:userEmail,
                 logo:profilePic,

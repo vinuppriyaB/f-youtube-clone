@@ -52,7 +52,7 @@ const WatchPage = ({searchItem,setSearchItem,currentUser,setCurrentUser,userName
 let video=[];
 let commenttext=[];
     const getchannel=()=>{
-         fetch(`http://localhost:8000/channel/watchvideo/${watchitem}`,
+         fetch(`https://youtubeclonee.herokuapp.com/channel/watchvideo/${watchitem}`,
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{

@@ -133,7 +133,7 @@ const SearchVideo = ({searchItem,setSearchItem,userEmail}) => {
 
 const getchannel=()=>{
     console.log("ghbhc")
-     fetch(`http://localhost:8000/channel/search1/${searchitem}`,
+     fetch(`https://youtubeclonee.herokuapp.com/channel/search1/${searchitem}`,
     {method:"GET",})
     .then((data)=>data.json())
     .then((res)=>{
@@ -148,7 +148,7 @@ const getchannel=()=>{
     useEffect(()=> getallchannel(),[])
 
     const getallchannel=()=>{
-         fetch("http://localhost:8000/channel/getvideos",
+         fetch("https://youtubeclonee.herokuapp.com/channel/getvideos",
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{

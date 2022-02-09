@@ -20,7 +20,7 @@ export const ChannelPage = () => {
     useEffect(()=> getchannel(),[channelname])
 
 const getchannel=()=>{
-     fetch(`http://localhost:8000/channel/search1/${channelname}`,
+     fetch(`https://youtubeclonee.herokuapp.com/channel/search1/${channelname}`,
     {method:"GET",})
     .then((data)=>data.json())
     .then((res)=>{

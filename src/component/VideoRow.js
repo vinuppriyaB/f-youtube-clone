@@ -36,7 +36,7 @@ const VideoRow = (
             channelName:channel,
             
         }
-            fetch("http://localhost:8000/channel/updateview",
+            fetch("https://youtubeclonee.herokuapp.com/channel/updateview",
             {
                 method:"PUT",
                 body: JSON.stringify(updateOn),

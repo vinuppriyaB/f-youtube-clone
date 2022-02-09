@@ -69,24 +69,24 @@ const data=[
 ]
 
 export const Sidebar = ({userEmail,setUserEmail}) => {
- const [sidedata,setSideData]=useState([])
+ const [sidedata,setSideData]=useState(data)
     let sidebardata=[];
     let sub=[];
     const { searchitem } = useParams();
     
     const [subChannel,setSubChannel]=useState([]);
 
-    
+    useEffect(()=> {
+        getchannel()
+      } ,[])
+
 
     const getchannel=()=>{
         if(userEmail)
         {
             
             sidebardata=[];
-        
-        
-        console.log(sidebardata.length,sidebardata)
-         fetch(`http://localhost:8000/register/getsubscribechannel/${userEmail}`,
+         fetch(`https://youtubeclonee.herokuapp.com/register/getsubscribechannel/${userEmail}`,
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{
@@ -104,23 +104,17 @@ export const Sidebar = ({userEmail,setUserEmail}) => {
             }
             sidebardata=[...data,...sub];
             setSideData(sidebardata)
-            console.log(sidebardata.length,sidebardata)
         });
     }
         
               
       }
       
-      useEffect(()=> {
-        setTimeout(() => {
-            getchannel()
-        }, 0);
-      } ,[])
-
+      
       let selectedValue=new Array(sidebardata.length);
       sidebardata.forEach((item,index)=> selectedValue[index]=item.selected);
     const [select,setSelect]=useState(selectedValue);
-    console.log(sidebardata)
+    
     return (
 
         <div className="sidebar" >

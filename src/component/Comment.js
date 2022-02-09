@@ -27,11 +27,11 @@ const Comment = ({channelName,title,currentUser,setUserName,userName,userEmail,p
         useEffect(()=> getchannel(),[watchitem])
 let video=[];
     const getchannel=()=>{
-         fetch(`http://localhost:8000/channel/getcomment/${watchitem}`,
+         fetch(`https://youtubeclonee.herokuapp.com/channel/getcomment/${watchitem}`,
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{
-            // console.log(res)
+           
             setAllComment(res[0].video.comment);
             
             
@@ -52,9 +52,8 @@ const postcomment=()=>{
         
         }
     }
-    // console.log(comment)
 
-        fetch("http://localhost:8000/channel/postcomment",
+        fetch("https://youtubeclonee.herokuapp.com/channel/postcomment",
         {
             method:"POST",
             body: JSON.stringify(comment),
@@ -100,7 +99,7 @@ const postcomment=()=>{
 
             </div> 
             {allComment.map((data,index)=>{
-                console.log(data._id);
+                
                return <DisplayComment
                 key={index}
                 text={data.text}

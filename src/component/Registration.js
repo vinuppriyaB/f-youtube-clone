@@ -37,7 +37,7 @@ export const Registration=({setCurrentUser,currentUser,userName,
         const registerUser={firstName:firstName,lastName:lastName,email:email,password:password,profilePic:ProPic }; 
         
         
-      await fetch("http://localhost:8000/register/signup",
+      await fetch("https://youtubeclonee.herokuapp.com/register/signup",
     {
         method:"POST",
         body: JSON.stringify(registerUser),
@@ -48,7 +48,7 @@ export const Registration=({setCurrentUser,currentUser,userName,
           {
             
                 try{
-                    var response= axios.post("http://localhost:8000/channel",{
+                    var response= axios.post("https://youtubeclonee.herokuapp.com/channel",{
                         channelName:`${firstName} ${lastName}`,
                         email:email,
                         logo:ProPic,

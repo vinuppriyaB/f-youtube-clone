@@ -49,7 +49,7 @@ const ChannelRow = ({
           channelName:channelName,
          
      }
-      fetch("http://localhost:8000/register/checkforsubscription",
+      fetch("https://youtubeclonee.herokuapp.com/register/checkforsubscription",
       {
           method:"PUT",
           body: JSON.stringify(updateOn),
@@ -80,7 +80,7 @@ const ChannelRow = ({
         
     }
     // console.log(updateOn);
-    fetch("http://localhost:8000/register/addchannel",
+    fetch("https://youtubeclonee.herokuapp.com/register/addchannel",
 {
    method:"POST",
    body: JSON.stringify(updateOn),
@@ -97,7 +97,7 @@ const updateOn={
     channelName:channelName,
     
 }
-    fetch("http://localhost:8000/register/unsubscribechannel",
+    fetch("https://youtubeclonee.herokuapp.com/register/unsubscribechannel",
     {
         method:"PUT",
         body: JSON.stringify(updateOn),
@@ -118,7 +118,7 @@ const updateOn={
     
 }
 
-    fetch("http://localhost:8000/channel/updatesubcription",
+    fetch("https://youtubeclonee.herokuapp.com/channel/updatesubcription",
     {
         method:"PUT",
         body: JSON.stringify(updateOn),

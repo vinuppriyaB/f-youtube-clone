@@ -106,14 +106,14 @@ else{
                 channelName:channelName,
                
            }
-            fetch("http://localhost:8000/register/checkforsubscription",
+            fetch("https://youtubeclonee.herokuapp.com/register/checkforsubscription",
             {
                 method:"PUT",
                 body: JSON.stringify(updateOn),
                 headers:{"Content-Type":"application/json"},
             }).then((data)=>data.json())
                 .then((res)=>{
-                    console.log(res)
+                    // console.log(res)
                 if(res.msg=="subscribed")
                 {
                  setSubscribed(true)
@@ -135,7 +135,7 @@ else{
                channelName:channelName,
                clicked:clicked,
            }
-           fetch("http://localhost:8000/channel/updatelike",
+           fetch("https://youtubeclonee.herokuapp.com/channel/updatelike",
       {
           method:"PUT",
           body: JSON.stringify(updateOn),
@@ -166,7 +166,7 @@ else{
             channelName:channelName,
             clicked:clicked,
         }
-        fetch("http://localhost:8000/channel/updatedisLike",
+        fetch("https://youtubeclonee.herokuapp.com/channel/updatedisLike",
    {
        method:"PUT",
        body: JSON.stringify(updateOn),
@@ -197,7 +197,7 @@ else{
                 
             }
             // console.log(updateOn);
-            fetch("http://localhost:8000/register/addchannel",
+            fetch("https://youtubeclonee.herokuapp.com/register/addchannel",
        {
            method:"POST",
            body: JSON.stringify(updateOn),
@@ -214,7 +214,7 @@ else{
             channelName:channelName,
             
         }
-            fetch("http://localhost:8000/register/unsubscribechannel",
+            fetch("https://youtubeclonee.herokuapp.com/register/unsubscribechannel",
             {
                 method:"PUT",
                 body: JSON.stringify(updateOn),
@@ -235,7 +235,7 @@ else{
             
         }
        
-            fetch("http://localhost:8000/channel/updatesubcription",
+            fetch("https://youtubeclonee.herokuapp.com/channel/updatesubcription",
             {
                 method:"PUT",
                 body: JSON.stringify(updateOn),

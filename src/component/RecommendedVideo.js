@@ -98,7 +98,7 @@ const RecommendedVideo = ({searchItem,setSearchItem,setUserName,userName,
     useEffect(()=> getchannel(),[])
 
     const getchannel=()=>{
-         fetch("http://localhost:8000/channel/getvideos",
+         fetch("https://youtubeclonee.herokuapp.com/channel/getvideos",
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{

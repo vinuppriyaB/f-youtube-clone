@@ -25,7 +25,7 @@ export const YourChannel = () => {
 
 const getchannel=()=>{
     // console.log("call")
-     fetch(`http://localhost:8000/channel/search/${email}`,
+     fetch(`https://youtubeclonee.herokuapp.com/channel/search/${email}`,
     {method:"GET",})
     .then((data)=>data.json())
     .then((res)=>{
