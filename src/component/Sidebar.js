@@ -78,7 +78,7 @@ export const Sidebar = ({userEmail,setUserEmail}) => {
 
     useEffect(()=> {
         getchannel()
-      } ,[])
+      } ,[userEmail])
 
 
     const getchannel=()=>{

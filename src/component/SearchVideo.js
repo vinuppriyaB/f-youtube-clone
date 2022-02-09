@@ -125,23 +125,28 @@ const SearchVideo = ({searchItem,setSearchItem,userEmail}) => {
     const [channel,setChannel]=useState([]);
     const [video,setVideo]=useState([]);
     const [subscriber,setSubscriber]=useState("");
+    const [findVideo,setFindVideo]=useState([]);
+    let find=[];
+    let related=[];
     // getchannel();
     // console.log(searchitem)
     useEffect(()=> {
         getallchannel()
-        getchannel()},[searchItem,setSearchItem,searchitem])
+        getchannel()},[searchitem])
 
-const getchannel=()=>{
-    console.log("ghbhc")
-     fetch(`https://youtubeclonee.herokuapp.com/channel/search1/${searchitem}`,
+const getchannel=async()=>{
+    console.log(searchitem)
+    const fetchdata=await fetch(`https://youtubeclonee.herokuapp.com/channel/search1/${searchitem}`,
     {method:"GET",})
-    .then((data)=>data.json())
+    .then((data)=>{data.json()
+       
+    })
     .then((res)=>{
-        // console.log(res)
+
         setChannel(res)
         setVideo(res.video)
     });
-           
+    console.log(fetchdata)       
   }
 
   const [recommandedVideos,setRecommondedVideos]=useState([]);
@@ -152,15 +157,30 @@ const getchannel=()=>{
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{
-            // console.log(res)
-            setRecommondedVideos(res)
+           
+            for(let i=0;i<res.length;i++)
+            {
+                if(searchitem.toLowerCase().includes(res[i].video.tag.toLowerCase()) )
+                {
+                   
+                    find.push(res[i])
+                }
+                else{
+                    related.push(res[i])
+                }
+            }
+            setFindVideo(find)
+            
+
+           setRecommondedVideos(related)
             
         });
                
       }
+    
   
-console.log(channel);
-console.log(channel.length);
+// console.log(channel);
+// console.log(channel.length);
     return (
          <div className="search_channel">
         <div className="searchvideo">
@@ -194,6 +214,7 @@ console.log(channel.length);
                  title={d.title}
                  channel={channel.channelName}
                  image1={d.imageLink}
+                 videoLink={d.videoLink}
                  image2={channel.logo}
                  timestamp={d.timestamp}
                  views={d.views}
@@ -208,6 +229,25 @@ console.log(channel.length);
         </div>
 
         <div className="searchvideo">
+        {findVideo.map((v,index)=>{
+            
+            return <VideoRow
+            key={index}
+            id={v.video._id}
+
+            title={v.video.title}
+            channel={v.channelName}
+            image1={v.video.imageLink}
+            image2={v.logo}
+            videoLink={v.video.videoLink}
+            timestamp={v.video.timestamp}
+            views={v.video.views}
+            description={v.video.description}
+            
+            />
+        }) }
+        </div>
+        <div className="searchvideo">
         {recommandedVideos.map((v,index)=>{
             
             return <VideoRow
@@ -218,6 +258,7 @@ console.log(channel.length);
             channel={v.channelName}
             image1={v.video.imageLink}
             image2={v.logo}
+            videoLink={v.video.videoLink}
             timestamp={v.video.timestamp}
             views={v.video.views}
             description={v.video.description}

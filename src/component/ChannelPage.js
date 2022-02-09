@@ -56,7 +56,7 @@ const getchannel=()=>{
 
                 <div classname="channelPage_tab">
                     <TabContext value={value} sx={{ width:"80%" }}>
-                    <Box className="channelPage_TabList" sx={{ borderBottom: 0, borderColor: 'divider'}}>
+                    <Box className="channelPage_TabList" sx={{ borderBottom: 0, borderColor: 'divider',backgroundColor:"rgb(247, 243, 243)"}}>
                     
                     <TabList onChange={handleChange} aria-label="lab API tabs example" >
 
@@ -64,8 +64,7 @@ const getchannel=()=>{
                         <Tab label="Home" value="1" />
                         <Tab label="video" value="2" />
                         <Tab label="playlist" value="3" />
-                        <Tab label="community" value="4" />
-                        <Tab label="about" value="5" />
+                        <Tab label="about" value="4" />
                         </TabList>
 
                     </Box>
@@ -82,6 +81,7 @@ const getchannel=()=>{
                         timestamp={d.timestamp}
                         views={d.views}
                         id={d._id}
+                        videoLink={d.videoLink}
                         
                         />
                     }) }
@@ -98,15 +98,34 @@ const getchannel=()=>{
                              image2={channel.logo}
                              timestamp={d.timestamp}
                              views={d.views}
+                             videoLink={d.videoLink}
                              description={d.description}
                              
                              />
                          )) }
                     </div>
                     </TabPanel>
-                    <TabPanel value="3">Item Three</TabPanel>
-                    <TabPanel value="4">Item Three</TabPanel>
-                    <TabPanel value="5">Item Three</TabPanel>
+                    <TabPanel value="3">
+                    <div className="channelPage_video">
+                    {video.map((d,index)=>{
+                        
+                        return <VideoCard
+                        key={index}
+                        title={d.title}
+                        channel={channel.channelName}
+                        image1={d.imageLink}
+                        image2={channel.logo}
+                        timestamp={d.timestamp}
+                        videoLink={d.videoLink}
+                        views={d.views}
+                        id={d._id}
+                        
+                        />
+                    }) }
+                    </div>
+                    </TabPanel>
+
+                    <TabPanel value="4"><h2>No data available</h2> </TabPanel>
                     </TabContext>
                 </div>
             </div>

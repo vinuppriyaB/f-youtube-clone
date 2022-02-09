@@ -11,6 +11,8 @@
     background-color: white;
     /* width: 100%; */
     min-width:500px;
+    background:white !important; 
+
     
 }
 .header__logo{

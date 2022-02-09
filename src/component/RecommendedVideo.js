@@ -121,6 +121,7 @@ const RecommendedVideo = ({searchItem,setSearchItem,setUserName,userName,
             channel={v.channelName}
             image1={v.video.imageLink}
             image2={v.logo}
+            videoLink={v.video.videoLink}
             timestamp={v.video.timestamp}
             views={v.video.views}
             

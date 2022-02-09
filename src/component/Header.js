@@ -61,7 +61,12 @@ const [anchorEl, setAnchorEl] = React.useState(null);
   setProfilePic("");
   history.push("/")
   }
-
+  const handleKeyPress = (event) => {
+   
+    if(event.key === 'Enter'){
+      history.push(`/search/${searchItem}`)
+    }
+  }
 // console.log(userName,userEmail,profilePic) ; 
     return (
         <div className="header">
@@ -82,9 +87,12 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                 
                 value={searchItem}
                 onChange={(e)=>setSearchItem(e.target.value)}
+                onKeyPress={(event)=>handleKeyPress(event)}
                 />
 
-                <SearchIcon className="header__searchButton" onClick={()=>history.push(`/search/${searchItem}`)} />
+                <SearchIcon className="header__searchButton" onClick={()=>{
+
+                  history.push(`/search/${searchItem}`)}} />
                 
 
                 
@@ -129,12 +137,7 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                         <ListItemText primary="Your Channel" />
                       </ListItemButton>
 
-                      <ListItemButton onClick={()=>history.push("/postvideo")}>
-                      <ListItemIcon>
-                      <PostAddOutlinedIcon/>
-                      </ListItemIcon>
-                      <ListItemText primary="Post Video" />
-                    </ListItemButton>
+                      
 
                     <ListItemButton onClick={()=>logoutfunction()} >
                     <ListItemIcon>

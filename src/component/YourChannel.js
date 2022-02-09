@@ -61,7 +61,7 @@ const getchannel=()=>{
 
                 <div classname="channelPage_tab">
                     <TabContext value={value} sx={{ width:"80%" }}>
-                    <Box className="channelPage_TabList" sx={{ borderBottom: 0, borderColor: 'divider'}}>
+                    <Box className="channelPage_TabList" sx={{ borderBottom: 0, borderColor: 'divider',backgroundColor:"rgb(247, 243, 243)"}}>
                     
                     <TabList onChange={handleChange} aria-label="lab API tabs example" >
 
@@ -85,6 +85,7 @@ const getchannel=()=>{
                         channel={channel.channelName}
                         image1={d.imageLink}
                         image2={channel.logo}
+                        videoLink={d.videoLink}
                         timestamp={d.timestamp}
                         views={d.views}
                         id={d._id}
@@ -105,6 +106,7 @@ const getchannel=()=>{
                              image1={d.imageLink}
                              image2={channel.logo}
                              timestamp={d.timestamp}
+                             videoLink={d.videoLink}
                              views={d.views}
                              description={d.description}
                              

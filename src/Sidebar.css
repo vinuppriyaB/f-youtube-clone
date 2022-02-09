@@ -30,8 +30,7 @@
 .sidebar::-webkit-scrollbar-thumb{
     background: white;
     border-radius: 5px;
-    margin-left:5px !important;
-    height: 20px !important;
+    padding-left:5px !important;
 }
 .sidebar:hover.sidebar::-webkit-scrollbar-thumb{
     background: rgb(165, 164, 164);
@@ -62,7 +61,7 @@
         position: fixed;
         top:77px;
         z-index: 100;
-    
+     min-height: 95vh;
         /* background-color: tomato; */
     
     }

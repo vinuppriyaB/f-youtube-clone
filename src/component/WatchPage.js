@@ -31,7 +31,7 @@ const data=[{
     }]
 
 const WatchPage = ({searchItem,setSearchItem,currentUser,setCurrentUser,userName,userEmail,profilePic}) => {
-    console.log(userName,userEmail,profilePic)
+    // console.log(userName,userEmail,profilePic)
     const {watchitem} =useParams();
     const [videoLink,setVideoLink]=useState("");
     const [title,setTitle]=useState("");

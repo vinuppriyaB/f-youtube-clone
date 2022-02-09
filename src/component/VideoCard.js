@@ -3,6 +3,7 @@ import "../VideoCard.css";
 import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import HoverVideoPlayer from 'react-hover-video-player';
 
 const VideoCard = ({
             title,
@@ -12,7 +13,9 @@ const VideoCard = ({
             timestamp,
             views,
             id,
+            videoLink
 }) => {
+   
     let temp=timestamp.split(" ");
     let date="";
     if(temp.length>3)
@@ -23,6 +26,7 @@ const VideoCard = ({
        date=timestamp;
     }
     const history = useHistory();
+    const [hover,setHover]=useState(false);
     const [view,setView]=useState(views)
     const viewUpdate=(title,channelName)=>{
         // console.log(id,channelName)
@@ -52,8 +56,25 @@ const VideoCard = ({
         <div className="videocard" onClick={()=>{
             viewUpdate(title,channel)
             history.push(`/watch/${id}`)
-        }}>
-        <img className="videocard_image" src={image1} alt="image"/>
+        }}
+        onMouseOver={()=>setHover(true)}
+        onMouseOut={()=>setHover(false)}
+        
+        >
+        
+        {hover?<iframe
+            frameborder="0" 
+            src={`${videoLink}?autoplay=1;&mute=1`}  
+                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>:
+            <iframe
+
+            src={videoLink} 
+            frameborder="0" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            
+            ></iframe>}
         <div className="videocard_content">
         <Avatar alt="Travis Howard" src={image2} />
         <div className="videocard_text">

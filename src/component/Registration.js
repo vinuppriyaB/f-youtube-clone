@@ -33,61 +33,69 @@ export const Registration=({setCurrentUser,currentUser,userName,
           
             
         };
+        const createchannel=async()=>{
+            try{
+                var response= axios.post("https://youtubeclonee.herokuapp.com/channel",{
+                    channelName:`${firstName} ${lastName}`,
+                    email:email,
+                    logo:ProPic,
+                    
+            })
+            console.log(response)
+        
+            if(response.data)
+        {
+        
+
+
+        history.push("/");
+
+       
+        
+    }
+            
+            }catch(e){
+                console.warn(e)
+            }
+       
+
+        }
     const registrationprocess = async() => {  
         const registerUser={firstName:firstName,lastName:lastName,email:email,password:password,profilePic:ProPic }; 
+       
+        try{
+            var response=await axios.post("https://youtubeclonee.herokuapp.com/register/signup",{
+                firstName:firstName,
+                lastName:lastName,
+                email:email,
+                password:password,
+                profilePic:ProPic
+        })
         
-        
-      await fetch("https://youtubeclonee.herokuapp.com/register/signup",
-    {
-        method:"POST",
-        body: JSON.stringify(registerUser),
-        headers:{"Content-Type":"application/json"},
-    }).then((res)=>{
-        setCurrentUser(email)
-        if(res.status==200)
-          {
             
-                try{
-                    var response= axios.post("https://youtubeclonee.herokuapp.com/channel",{
-                        channelName:`${firstName} ${lastName}`,
-                        email:email,
-                        logo:ProPic,
-                        
-                })
+        if(response.data)
+        {
             
-                // console.log(response.data);
-                  
-                
-                }catch(e){
-                    console.warn(e)
-                }
+            await localStorage.setItem("token",response.data.token);
+            localStorage.setItem("firstName",response.data.firstName);
+            localStorage.setItem("email",response.data.email);
+            localStorage.setItem("profilePic",response.data.profilePic);
+            setUserName(response.data.firstName);
+            setUserEmail(response.data.email);
+            setProfilePic(response.data.profilePic);
+            // createchannel()
+
+            
+            
            
-        
-            setTimeout(() => {
-                setUserName(firstName);
-            setUserEmail(email);
-            setProfilePic(ProPic);
-            resetLoginForm();
-            history.push("/"); 
-
-
-            }, 2000);
-
             
+        }
+        }catch(e){
             
+            console.warn(e)
+        }
+          
 
-            
-          }
-          else
-          {
-            window.alert("Invalid user account");
-            
-
-          }
-         
-        
-
-    }).catch((e)=> console.log("ERROR"))  
 }
 
     return(
@@ -167,3 +175,26 @@ export const Registration=({setCurrentUser,currentUser,userName,
     )
 }
 
+// await fetch("https://youtubeclonee.herokuapp.com/register/signup",
+// {
+//     method:"POST",
+//     body: JSON.stringify(registerUser),
+//     headers:{"Content-Type":"application/json"},
+// }).then((res)=>{
+//     console.log(res.json())
+//     setCurrentUser(email)
+//     if(res.status==200)
+//       {
+//         createchannel()
+        
+//       }
+//       else
+//       {
+//         window.alert("Invalid user account");
+        
+
+//       }
+     
+    
+
+// }).catch((e)=> console.log(e))  

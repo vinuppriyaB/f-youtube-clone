@@ -8,7 +8,7 @@ import { useHistory } from "react-router";
 
 export const PostVideo = ({userName,userEmail,profilePic,channelName}) => {
     const [title,setTitle]=useState("");
-    const [imageLink,setImageLink]=useState("");
+    
     const [videoLink,setVideoLink]=useState("");
     const [description,setDescription]=useState("");
     const [tags,setTags]=useState("");
@@ -29,7 +29,7 @@ export const PostVideo = ({userName,userEmail,profilePic,channelName}) => {
                 email:userEmail,
                 logo:profilePic,
                 title:title,
-                imageLink:imageLink,
+                imageLink:"link",
                 videoLink:videoLink,
                 description:description,
                 tags:tags,
@@ -56,14 +56,6 @@ export const PostVideo = ({userName,userEmail,profilePic,channelName}) => {
             variant="outlined" />
             
             
-            <TextField
-            type="text" 
-            className="login_textfield"
-            label='ImageLink'
-            placeholder='ImageLink'
-            value={imageLink}
-            onChange={event => setImageLink(event.target.value)}
-            variant="outlined" />
 
             <TextField
             type="text" 

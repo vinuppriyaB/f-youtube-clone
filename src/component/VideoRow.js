@@ -12,7 +12,8 @@ const VideoRow = (
         timestamp,
         views,
         description,
-        id
+        id,
+        videoLink
 
 }
 
@@ -29,6 +30,7 @@ const VideoRow = (
     }
     const history = useHistory();
     const [view,setView]=useState(views)
+    const [hover,setHover]=useState(false);
     const viewUpdate=(title,channelName)=>{
         // console.log(id,channelName)
         const updateOn={
@@ -57,10 +59,25 @@ const VideoRow = (
         <div className="videoRow" onClick={()=>{
             viewUpdate(title,channel)
             history.push(`/watch/${id}`)
-        }}>
 
-        <img className="videorow_image"
-        src={image1}  alt={title}/>
+        }}
+        onMouseOver={()=>setHover(true)}
+        onMouseOut={()=>setHover(false)}
+        >
+
+        {hover?<iframe
+            frameborder="0" 
+            src={`${videoLink}?autoplay=1;&mute=1`}  
+                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>:
+            <iframe
+
+            src={videoLink} 
+            frameborder="0" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            
+            ></iframe>}
         <div className="videoRow_textbox">
         <div className="videoRow_text">
         <h4>{title}</h4>

@@ -116,6 +116,7 @@ let video=[];
             title={v.video.title}
             channel={v.channelName}
             image1={v.video.imageLink}
+            videoLink={v.video.videoLink}
             image2={v.logo}
             timestamp={v.video.timestamp}
             views={v.video.views}
@@ -137,7 +138,8 @@ function RelatedVideoRow({
     timestamp,
     views,
     description,
-    id
+    id,
+    videoLink
 
 }){
     let temp=timestamp.split(" ");
@@ -151,6 +153,7 @@ function RelatedVideoRow({
         }
     const history=useHistory();
     const [view,setView]=useState(views)
+    const [hover,setHover]=useState(false);
     const viewUpdate=(title,channelName)=>{
         // console.log(id,channelName)
         const updateOn={
@@ -176,10 +179,24 @@ function RelatedVideoRow({
         <div className="RelatedVideoRow" onClick={()=>{
             viewUpdate(title,channel)
             history.push(`/watch/${id}`)
-        }}>
+        }}
+        onMouseOver={()=>setHover(true)}
+        onMouseOut={()=>setHover(false)}
+        >
 
-        <img className="RelatedVideoRow_image"
-        src={image1} alt={title}/>
+        {hover?<iframe
+            frameborder="0" 
+            src={`${videoLink}?autoplay=1;&mute=1`}  
+                // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>:
+            <iframe
+
+            src={videoLink} 
+            frameborder="0" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            
+            ></iframe>}
         <div className="RelatedVideoRow_text">
         <h4 className="RelatedVideoRow_title">{title}</h4>
         <p>{channel}</p>
