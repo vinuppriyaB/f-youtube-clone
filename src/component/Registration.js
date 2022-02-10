@@ -35,10 +35,10 @@ export const Registration=({setCurrentUser,currentUser,userName,
         };
         const createchannel=async()=>{
             try{
-                var response=await axios.post("http://localhost:8000/channel",{
+                var response=await axios.post("https://youtubeclonee.herokuapp.com/channel",{
                     channelName:`${firstName} ${lastName}`,
                     email:email,
-                    logo:ProPic,
+                    logo:firstName,
                     
             })
             console.log(response.data)
@@ -61,12 +61,12 @@ export const Registration=({setCurrentUser,currentUser,userName,
         const registerUser={firstName:firstName,lastName:lastName,email:email,password:password,profilePic:ProPic }; 
        
         try{
-            var response=await axios.post("http://localhost:8000/register/signup",{
+            var response=await axios.post("https://youtubeclonee.herokuapp.com/signup",{
                 firstName:firstName,
                 lastName:lastName,
                 email:email,
                 password:password,
-                profilePic:ProPic
+                profilePic:firstName
         })
         
          console.log(response.data)   
@@ -145,14 +145,7 @@ export const Registration=({setCurrentUser,currentUser,userName,
         onChange={event => setPassword(event.target.value)}
         variant="outlined" />
 
-        <input
-        type="text" 
-        className="login_textfield"
-        placeholder='Profile PictureLink' 
-        type='profile'
-        value={ProPic}
-        onChange={event => setProPic(event.target.value)}
-        variant="outlined" />
+
 
            <div className="Login_bottom">
            <Button variant="text" className="login_btn "

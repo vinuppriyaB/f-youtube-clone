@@ -6,9 +6,10 @@
     height: auto;
     width:400px;
     border:1px solid gray;
-    margin:100px auto;
-    padding: 50px 40px 70px 40px;
+    margin:150px auto;
+    padding: 50px 40px 50px 40px;
     border-radius: 5px;
+    background-color: white;
     
 }
 
@@ -19,7 +20,7 @@
     font-size: 30px;
 }
 .login_textfield{
-    width: 95%;
+    width: 93% !important;
     font-size: 17px;
     padding: 10px 10px;
     
