@@ -57,6 +57,7 @@ const VideoCard = ({
             viewUpdate(title,channel)
             history.push(`/watch/${id}`)
         }}
+        
         onMouseOver={()=>setHover(true)}
         onMouseOut={()=>setHover(false)}
         
@@ -64,14 +65,15 @@ const VideoCard = ({
         
         {hover?<iframe
             frameborder="0" 
-            src={`${videoLink}?autoplay=1;&mute=1`}  
+            style={{pointerEvents:"none"}}
+            src={`${videoLink}?autoplay=1;&mute=1;&controls=0`}  
                 // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>:
             <iframe
 
             src={videoLink} 
             frameborder="0" 
-            title="YouTube video player" 
+            // title="YouTube video player" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             
             ></iframe>}

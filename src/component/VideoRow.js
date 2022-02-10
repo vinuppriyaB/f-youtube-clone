@@ -67,7 +67,8 @@ const VideoRow = (
 
         {hover?<iframe
             frameborder="0" 
-            src={`${videoLink}?autoplay=1;&mute=1`}  
+            style={{pointerEvents:"none"}}
+            src={`${videoLink}?autoplay=1;&mute=1;&controls=0`}
                 // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>:
             <iframe

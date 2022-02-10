@@ -27,14 +27,7 @@ const DisplayComment = ({
     userName,
     profilePic
 }) => {
-// console.log(text,
-//     like,
-//     dislike,
-//     email,
-//     channelName,
-//     currentUser,
-//     commentId,
-//     title);
+
         const history = useHistory();
         const {watchitem} =useParams();
         const [replyText,setReplyText]=useState("");
@@ -45,6 +38,7 @@ const DisplayComment = ({
             const [allreply,setAllReply]=useState([]);
             const [showReplies,setShowReplies]=useState(false)
             const [Clike,setCLike]=useState(like);
+            const [CDislike,setCDisLike]=useState(dislike)
             
     
             useEffect(()=> getReply(),[])
@@ -62,7 +56,7 @@ const DisplayComment = ({
                    
           }
 
-          const postreply=()=>{
+        const postreply=()=>{
             const reply={       
                 channelName:channelName,
                 videotitle:title,
@@ -101,21 +95,47 @@ const DisplayComment = ({
                 clicked:clicked,
             }
             fetch("https://youtubeclonee.herokuapp.com/channel/updateCommentLike",
-       {
-           method:"PUT",
-           body: JSON.stringify(updateOn),
-           headers:{"Content-Type":"application/json"},
-       }).then((res)=>{
-           if(res.status==200)
-           {
-               if(clicked)
-               setCLike(like+1);
-             else
-             setCLike(like-1);
-             setLikeClicked(!likeClicked)
-           }
-         
-       }).catch((e)=> console.log("ERROR"))  
+                {
+                    method:"PUT",
+                    body: JSON.stringify(updateOn),
+                    headers:{"Content-Type":"application/json"},
+                }).then((res)=>{
+                    if(res.status==200)
+                    {
+                        if(clicked)
+                        setCLike(Clike+1);
+                        else
+                        setCLike(Clike-1);
+                        setLikeClicked(!likeClicked)
+                    }
+                    
+                }).catch((e)=> console.log("ERROR"))  
+            
+        }    
+        const commentDisLikeUpdate=(id,channelName,clicked)=>{
+            // console.log(id,channelName)
+            const updateOn={
+                 title:title,
+                channelName:channelName,
+                commentText:text,
+                clicked:clicked,
+            }
+            fetch("https://youtubeclonee.herokuapp.com/channel/updateCommentLike",
+                {
+                    method:"PUT",
+                    body: JSON.stringify(updateOn),
+                    headers:{"Content-Type":"application/json"},
+                }).then((res)=>{
+                    if(res.status==200)
+                    {
+                        if(clicked)
+                        setCDisLike(CDislike+1);
+                        else
+                        setCDisLike(CDislike-1);
+                        setUnLikeClicked(!unLikeClicked)
+                    }
+                    
+                }).catch((e)=> console.log("ERROR"))  
             
         }    
 
@@ -134,24 +154,50 @@ const DisplayComment = ({
             <div className="commentread_col2row3">
                 <Button variant="text">
                 {likeClicked? <ThumbUpIcon className="watchVideo_icon" 
-                onClick={()=>commentLikeUpdate(title,channelName,!likeClicked)}
-                />:
+                onClick={()=>{
+                    
+                    commentLikeUpdate(title,channelName,!likeClicked)  
+        
+                }}/>:
                 <ThumbUpOutlinedIcon className="watchVideo_icon"
-                onClick={()=>{commentLikeUpdate(title,channelName,!likeClicked)}}
+                onClick={()=>{
+                    if(unLikeClicked)
+                    {
+                        commentLikeUpdate(title,channelName,!likeClicked)
+                        commentDisLikeUpdate(title,channelName,!unLikeClicked)
+                    }
+                    else{
+                        commentLikeUpdate(title,channelName,!likeClicked)
+                    }
+                    
+                }}
                 /> } 
                 {Clike}</Button>
-
+                <Button variant="text">
                 {unLikeClicked? <ThumbDownIcon className="watchVideo_icon" 
-                onClick={()=>setUnLikeClicked(!unLikeClicked)}
-                />:
+                onClick={()=>{
+                    
+                    commentDisLikeUpdate(title,channelName,!unLikeClicked)
+        
+                }}/>:
                 <ThumbDownOutlinedIcon className="watchVideo_icon"
-                onClick={()=>{setUnLikeClicked(!unLikeClicked)}}
+                    onClick={()=>{
+                        if(likeClicked)
+                        {
+                            commentDisLikeUpdate(title,channelName,!unLikeClicked)
+                            commentLikeUpdate(title,channelName,!likeClicked)
+                        }else{
+                            commentDisLikeUpdate(title,channelName,!unLikeClicked)
+                        }
+                    }}
+                    
                 /> } 
-
+                {CDislike}</Button>
                 <Button variant="text"
                 onClick={()=>setShowReplyRow(true)}
                 >reply</Button>
             </div>
+            
 
 
             {showReplyRow ? <div className="commentread_col2row4">

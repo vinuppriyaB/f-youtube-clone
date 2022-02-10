@@ -38,7 +38,7 @@ const DisplayReplies = ({email,
                 <ThumbUpOutlinedIcon className="watchVideo_icon"
                 onClick={()=>setLikeClicked(!likeClicked)}
                 /> } 
-                {like}</Button>
+                </Button>
 
                 {unLikeClicked? <ThumbDownIcon className="watchVideo_icon" 
                 onClick={()=>setUnLikeClicked(unLikeClicked)}

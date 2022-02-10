@@ -11,15 +11,15 @@ export const PostVideo = ({userName,userEmail,profilePic,channelName}) => {
     
     const [videoLink,setVideoLink]=useState("");
     const [description,setDescription]=useState("");
-    const [tags,setTags]=useState("");
+    const [tag,setTag]=useState("");
     const history = useHistory();
 
-    // const resetLoginForm = (event) => {
-    //             setEmail("");
-    //         setPassword("");
-          
-            
-    //     };
+    const resetPostForm = () => {
+        setTitle("");
+        setVideoLink("");
+        setDescription("");
+        setTag("");
+        };
     const postvideo = async() => {  
         
 
@@ -32,10 +32,14 @@ export const PostVideo = ({userName,userEmail,profilePic,channelName}) => {
                 imageLink:"link",
                 videoLink:videoLink,
                 description:description,
-                tags:tags,
+                tag:tag,
         })
+        if(response.data)
+        {
+            resetPostForm();
+        }
        
-        // console.log(response.data);
+
             
         
         }catch(e){
@@ -78,10 +82,10 @@ export const PostVideo = ({userName,userEmail,profilePic,channelName}) => {
             <TextField
             type="text" 
             className="login_textfield"
-            label='Tags'
-            placeholder='Tags'
-            value={tags}
-            onChange={event => setTags(event.target.value)}
+            label='Tag'
+            placeholder='Tag'
+            value={tag}
+            onChange={event => setTag(event.target.value)}
             variant="outlined" />
 
             

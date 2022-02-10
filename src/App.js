@@ -23,6 +23,7 @@ function App() {
   const [userName,setUserName]=useState("");
   const [userEmail,setUserEmail]=useState("");
   const [profilePic,setProfilePic]=useState("");
+  const [search,setSearch]=useState(false);
   return (
     <div className="App">
 
@@ -52,6 +53,8 @@ function App() {
 
       <Route  exact path="/">
         <Header searchItem={searchItem} setSearchItem={setSearchItem} 
+        setSearch={setSearch}
+        search={search}
         currentUser={currentUser} setCurrentUser={setCurrentUser}
         userName={userName}  userEmail={userEmail} profilePic={profilePic}
         setUserName={setUserName} setUserEmail={setUserEmail} setProfilePic={setProfilePic}/>
@@ -66,6 +69,8 @@ function App() {
       <Route  exact path="/yourchannel/:email">
         <Header searchItem={searchItem} setSearchItem={setSearchItem} 
         currentUser={currentUser} setCurrentUser={setCurrentUser}
+        setSearch={setSearch}
+        search={search}
         userName={userName}  userEmail={userEmail} profilePic={profilePic}
         setUserName={setUserName} setUserEmail={setUserEmail} setProfilePic={setProfilePic}/>
         <div className="App__page">

@@ -26,7 +26,7 @@ export const Registration=({setCurrentUser,currentUser,userName,
     
     
     const history = useHistory();
-    const resetLoginForm = (event) => {
+    const resetLoginForm =async (event) => {
                 setEmail("");
             setPassword("");
             setProfilePic("");
@@ -35,24 +35,21 @@ export const Registration=({setCurrentUser,currentUser,userName,
         };
         const createchannel=async()=>{
             try{
-                var response= axios.post("https://youtubeclonee.herokuapp.com/channel",{
+                var response=await axios.post("http://localhost:8000/channel",{
                     channelName:`${firstName} ${lastName}`,
                     email:email,
                     logo:ProPic,
                     
             })
-            console.log(response)
+            console.log(response.data)
         
             if(response.data)
-        {
-        
-
-
-        history.push("/");
-
-       
-        
-    }
+            {
+            history.push("/");
+            }
+            else{
+            window.alert("Account exist");
+            }
             
             }catch(e){
                 console.warn(e)
@@ -60,11 +57,11 @@ export const Registration=({setCurrentUser,currentUser,userName,
        
 
         }
-    const registrationprocess = async() => {  
+        const registrationprocess = async() => {  
         const registerUser={firstName:firstName,lastName:lastName,email:email,password:password,profilePic:ProPic }; 
        
         try{
-            var response=await axios.post("https://youtubeclonee.herokuapp.com/register/signup",{
+            var response=await axios.post("http://localhost:8000/register/signup",{
                 firstName:firstName,
                 lastName:lastName,
                 email:email,
@@ -72,7 +69,7 @@ export const Registration=({setCurrentUser,currentUser,userName,
                 profilePic:ProPic
         })
         
-            
+         console.log(response.data)   
         if(response.data)
         {
             
@@ -83,13 +80,10 @@ export const Registration=({setCurrentUser,currentUser,userName,
             setUserName(response.data.firstName);
             setUserEmail(response.data.email);
             setProfilePic(response.data.profilePic);
-            // createchannel()
 
-            
-            
-           
-            
-        }
+        }else{
+            window.alert("Account exist");
+            }
         }catch(e){
             
             console.warn(e)
@@ -167,7 +161,9 @@ export const Registration=({setCurrentUser,currentUser,userName,
 
 
            <Button variant="contained" className="login_btn"
-           onClick={()=>registrationprocess()}
+           onClick={()=>{registrationprocess()
+            createchannel();
+           }}
            >Register</Button>
            </div> 
         </div>

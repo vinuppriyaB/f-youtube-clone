@@ -130,9 +130,9 @@ const SearchVideo = ({searchItem,setSearchItem,userEmail}) => {
     let related=[];
     // getchannel();
     // console.log(searchitem)
-    useEffect(()=> {
-        getallchannel()
-        getchannel()},[searchitem])
+    // useEffect(()=> {
+    //     getallchannel()
+    //     },[searchitem])
 
 const getchannel=async()=>{
     console.log(searchitem)
@@ -142,7 +142,7 @@ const getchannel=async()=>{
        
     })
     .then((res)=>{
-
+console.log(res)
         setChannel(res)
         setVideo(res.video)
     });
@@ -150,17 +150,22 @@ const getchannel=async()=>{
   }
 
   const [recommandedVideos,setRecommondedVideos]=useState([]);
-    useEffect(()=> getallchannel(),[])
+    useEffect(()=> getallchannel(),[searchitem])
 
     const getallchannel=()=>{
          fetch("https://youtubeclonee.herokuapp.com/channel/getvideos",
         {method:"GET",})
         .then((data)=>data.json())
         .then((res)=>{
-           
+            console.log(res)
+            
+            let temp=searchItem.toLowerCase();
+            console.log(temp)
             for(let i=0;i<res.length;i++)
             {
-                if(searchitem.toLowerCase().includes(res[i].video.tag.toLowerCase()) )
+                let temp2=res[i].video.tag.toLowerCase()
+                console.log(temp2)
+                if(temp.includes(temp2) )
                 {
                    
                     find.push(res[i])

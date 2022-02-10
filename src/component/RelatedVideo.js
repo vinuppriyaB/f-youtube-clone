@@ -183,20 +183,23 @@ function RelatedVideoRow({
         onMouseOver={()=>setHover(true)}
         onMouseOut={()=>setHover(false)}
         >
-
+        <div className="RelatedVideoRow_video">
         {hover?<iframe
+            className="RelatedVideoRow_image"
             frameborder="0" 
-            src={`${videoLink}?autoplay=1;&mute=1`}  
+            style={{pointerEvents:"none"}}
+            src={`${videoLink}?autoplay=1;&mute=1;&controls=0`}  
                 // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>:
             <iframe
-
+            className="RelatedVideoRow_image"
             src={videoLink} 
             frameborder="0" 
             title="YouTube video player" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             
             ></iframe>}
+        </div>    
         <div className="RelatedVideoRow_text">
         <h4 className="RelatedVideoRow_title">{title}</h4>
         <p>{channel}</p>
