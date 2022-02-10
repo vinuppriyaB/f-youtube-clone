@@ -61,7 +61,7 @@ export const Registration=({setCurrentUser,currentUser,userName,
         const registerUser={firstName:firstName,lastName:lastName,email:email,password:password,profilePic:ProPic }; 
        
         try{
-            var response=await axios.post("https://youtubeclonee.herokuapp.com/signup",{
+            var response=await axios.post("https://youtubeclonee.herokuapp.com/register/signup",{
                 firstName:firstName,
                 lastName:lastName,
                 email:email,
